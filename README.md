@@ -1,1 +1,1 @@
-# ansible-wordpress
+# zabbix-install

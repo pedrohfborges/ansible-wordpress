@@ -1,0 +1,10 @@
+[db]
+192.168.15.100
+[web]
+192.168.15.200
+[filial:children]
+db
+web
+[filial:vars]
+ansible_user=root
+ansible_password=Pedrao@123
