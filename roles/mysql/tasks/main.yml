@@ -1,0 +1,41 @@
+---
+- name: "Set Authorized Key"
+  ansible.posix.authorized_key:
+      user: root
+      state: present
+      key: "{{ lookup('file', '{{chavessh}}') }}"
+  become: yes
+- name: "Instalando dependências e arquivos."
+  apt:
+      name:
+            - python3
+            - python3-mysqldb
+            - mysql-server
+      state: latest
+  become: yes
+- name: "Criar o banco de dados"
+  mysql_db:
+      name: '{{wordpress_db}}'
+      state: present
+      login_unix_socket: /run/mysqld/mysqld.sock
+  become: yes
+- name: "Configurando o banco internamente"
+  mysql_user:
+      login_user: root
+      name: "{{wordpress_user}}"
+      password: "{{password}}"
+      priv: "{{wordpress_db}}.*:ALL"
+      state: present
+      host: "{{ item }}"
+  with_items:
+      - 'localhost'
+      - '127.0.0.1'
+      - "{{ ip_wordpress }}"
+- name: "Permitindo o acesso remoto ao DB"
+  copy:
+      src: '/configs/mysqld.cnf'
+      dest: '/etc/mysql/mysql.conf.d/mysqld.cnf'
+      remote_src: yes
+  become: yes
+  notify: 
+      - restart mysql

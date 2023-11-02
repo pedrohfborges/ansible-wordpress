@@ -1,0 +1,64 @@
+---
+- name: "Set Authorized Key"
+  ansible.posix.authorized_key:
+      user: root
+      state: present
+      key: "{{ lookup('file', '/home/pedro/.ssh/id_rsa.pub') }}"
+  become: yes
+
+
+- name: "Instalando dependências e arquivos."
+  apt:
+      name:
+            - apache2
+            - php8.1
+            - python3
+            - libapache2-mod-php8.1
+            - php-ssh2
+            - php8.1-gd
+            - php8.1-mysql
+            - php8.1-ssh2
+            - php8.1-ssh2
+      state: latest
+  become: yes
+
+- name: "Baixando a Versão mais recente do WordPress"
+  get_url:
+      url: 'https://wordpress.org/latest.tar.gz'
+      dest: '/tmp/wordpress.tar.gz'
+
+- name: "Descompactando o Arquivo"
+  unarchive:
+      src: /tmp/wordpress.tar.gz
+      dest: /var/www/
+      remote_src: yes
+  become: yes
+
+- name:
+  copy:
+      src: "{{caminho_wp}}/wp-config-sample.php"
+      dest: "{{caminho_wp}}/wp-config.php"
+      remote_src: yes
+  become: yes 
+
+- name: "Configura o wp-config com as entradas do DB"
+  replace:
+      path: "{{caminho_wp}}/wp-config.php"
+      regexp: "{{ item.regex }}"
+      replace: "{{ item.value }}"
+  with_items:
+      - { regex: 'database_name_here', value: "{{wordpress_db}}"}
+      - { regex: 'username_here', value: "{{wordpress_user}}"}
+      - { regex: 'password_here', value: "{{ password }}"}
+      - { regex: 'localhost', value: "{{ ip_bd }}"}
+      
+  become: yes
+
+- name: "Configura Apache para servir o WordPress"
+  template:
+      src: 'templates/000-default.conf.j2'
+      dest: '/etc/apache2/sites-available/000-default.conf'
+    
+  notify:
+      - restart apache
+  become: yes
