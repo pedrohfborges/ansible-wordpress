@@ -7,4 +7,4 @@ db
 web
 [filial:vars]
 ansible_user=root
-ansible_password=Pedrao@123
+ansible_password=senha123
