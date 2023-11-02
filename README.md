@@ -31,6 +31,6 @@ ansible-playbook -i inventario main.yml
 * Mysql - v8.0.35
 
 ## Modules Used:
-* ansible.posix.authorized_key module – Adds or removes an SSH authorized key - <a href= "https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html" target= "_blank"> Documentation Here </a>
+* ansible.posix.authorized_key module – Adds or removes an SSH authorized key - <a href= "https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html" target="_blank"> Documentation Here </a>
 
 
