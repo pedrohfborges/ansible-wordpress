@@ -32,5 +32,12 @@ ansible-playbook -i inventario main.yml
 
 ## Modules Used:
 * ansible.posix.authorized_key module – Adds or removes an SSH authorized key - <a href= "https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html" target="_blank"> Documentation Here </a>
+* apt – Manages apt-packages - <a href= "https://docs.ansible.com/ansible/2.9/modules/apt_module.html#apt-module" target="_blank"> Documentation Here </a>
+* mysql_db – Add or remove MySQL databases from a remote host - <a href= "https://docs.ansible.com/ansible/2.9/modules/mysql_db_module.html#mysql-db-module" target="__blank"> Documentation Here </a>
+* mysql_user – Adds or removes a user from a MySQL database - <a href= "https://docs.ansible.com/ansible/2.9/modules/mysql_user_module.html#mysql-user-module"> Documentation Here </a>
+* copy – Copy files to remote locations - <a href= "https://docs.ansible.com/ansible/2.9/modules/copy_module.html#copy-module"> Documentation Here </a>
+* get_url – Downloads files from HTTP, HTTPS, or FTP to node - <a href= "https://docs.ansible.com/ansible/2.9/modules/get_url_module.html#get-url-module"> Documentation Here </a>
+* unarchive – Unpacks an archive after (optionally) copying it from the local machine - <a href= "https://docs.ansible.com/ansible/2.9/modules/unarchive_module.html#unarchive-module"> Documentation Here </a>
+* replace – Replace all instances of a particular string in a file using a back-referenced regular expression - <a href= "https://docs.ansible.com/ansible/2.9/modules/replace_module.html#replace-module">
 
 
