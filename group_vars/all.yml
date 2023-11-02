@@ -1,7 +1,7 @@
 ---
 #### DEFINIR A CHAVESSH
 chavessh: /home/pedro/.ssh/id_rsa.pub
-password: Pedrao@123
+password: senha123
 ip_bd: 192.168.15.100
 ip_wordpress: ip_wordpress
 wordpress_db: wordpress_db
