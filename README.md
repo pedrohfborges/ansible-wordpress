@@ -22,7 +22,7 @@ sudo apt install python3
 ansible-playbook -i inventario main.yml
 ````
 
-## Configurations
+## Configurations:
 * Machine used: <br><br>
 ![image](https://github.com/pedrohfborges/ansible-wordpress/assets/111831621/e30e7c96-47ba-4a3e-9075-3ba6973b26e4)
 
